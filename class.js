@@ -4,12 +4,25 @@ class Person {
     this.first = first;
     this.second = second;
   }
+
+  sum() {
+    return "prototype : " + (this.first + this.second);
+  }
 }
 
-let kim = new Person("kim", 10, 20);
-console.log("kim", kim);
+class PersonPlus extends Person {
+  constructor(name, first, second, third) {
+    super(name, first, second);
+    this.third = third;
+  }
+  sum() {
+    return super.sum() + this.third;
+  }
+  avg() {
+    return (this.first + this.second + this.third) / 3;
+  }
+}
 
-// let kim = new Person("kim", 10, 20, 30);
-// let lee = new Person("lee", 10, 10, 10);
-// console.log("kim.sum()", kim.sum());
-// console.log("lee.sum()", lee.sum());
+let kim = new PersonPlus("kim", 10, 20, 30);
+console.log("kim.sum()", kim.sum());
+console.log("kim.avg()", kim.avg());
